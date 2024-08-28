@@ -1,0 +1,21 @@
+[
+  {
+    "resultsPath": "y",
+    "pluralizeNames": true,
+    "noConfigs": false,
+    "convertCaseFile": "none",
+    "convertCaseEntity": "none",
+    "convertCaseProperty": "none",
+    "convertEol": "CRLF",
+    "propertyVisibility": "none",
+    "lazy": false,
+    "activeRecord": false,
+    "generateConstructor": false,
+    "customNamingStrategyPath": "",
+    "relationIds": true,
+    "strictMode": "?",
+    "skipSchema": true,
+    "indexFile": true,
+    "exportType": "named"
+  }
+]

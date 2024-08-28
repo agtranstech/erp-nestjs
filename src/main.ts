@@ -6,11 +6,11 @@ import { ConfigService } from "@nestjs/config";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const configService = app.get(ConfigService)
+  const configService = app.get(ConfigService);
   const swaggerConfig = new DocumentBuilder()
-    .setTitle(configService.get('API_SWAGGER_TITLE'))
-    .setDescription(configService.get('API_SWAGGER_DESCRIPTION'))
-    .setVersion(configService.get('API_VERSION'))
+    .setTitle(configService.get("API_SWAGGER_TITLE"))
+    .setDescription(configService.get("API_SWAGGER_DESCRIPTION"))
+    .setVersion(configService.get("API_VERSION"))
     .addBearerAuth(
       {
         type: "http",
@@ -25,7 +25,7 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup("api", app, document);
-
-  await app.listen(configService.get('PORT'));
+  app.enableCors();
+  await app.listen(configService.get("PORT"));
 }
 bootstrap();

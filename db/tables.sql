@@ -4,7 +4,9 @@ CREATE TABLE tenant (
     status BOOLEAN DEFAULT FALSE, -- Boolean status with default value FALSE
     phone_number VARCHAR(20) UNIQUE, -- Unique phone number string, max length 20
     created_on TIMESTAMP default CURRENT_TIMESTAMP not null,
-    updated_on TIMESTAMP default CURRENT_TIMESTAMP not null
+    updated_on TIMESTAMP default CURRENT_TIMESTAMP not null,
+    created_by INTEGER NULL,
+    updated_by INTEGER NULL
 );
 
 -- Animal Retaled Tables
@@ -18,7 +20,9 @@ CREATE TABLE animal (
     ring_number VARCHAR(10), 
     tenant_id INTEGER REFERENCES tenant(id), -- Foreign key referencing the 'tenant' table
     created_on TIMESTAMP default CURRENT_TIMESTAMP not null,
-    updated_on TIMESTAMP default CURRENT_TIMESTAMP not null
+    updated_on TIMESTAMP default CURRENT_TIMESTAMP not null,
+    created_by INTEGER NULL,
+    updated_by INTEGER NULL
 );
 
 CREATE TABLE animal_details (
@@ -31,7 +35,9 @@ CREATE TABLE animal_details (
     nth_lactation INTEGER NOT NULL,
     tenant_id INTEGER REFERENCES tenant(id), -- Foreign key referencing the 'tenant' table
     created_on TIMESTAMP default CURRENT_TIMESTAMP not null,
-    updated_on TIMESTAMP default CURRENT_TIMESTAMP not null
+    updated_on TIMESTAMP default CURRENT_TIMESTAMP not null,
+    created_by INTEGER NULL,
+    updated_by INTEGER NULL
 );
 
 
@@ -45,7 +51,9 @@ CREATE TABLE animal_breeding_details (
     crossing_type VARCHAR(50) DEFAULT 'bull',
     tenant_id INTEGER REFERENCES tenant(id), -- Foreign key referencing the 'tenant' table
     created_on TIMESTAMP default CURRENT_TIMESTAMP not null,
-    updated_on TIMESTAMP default CURRENT_TIMESTAMP not null
+    updated_on TIMESTAMP default CURRENT_TIMESTAMP not null,
+    created_by INTEGER NULL,
+    updated_by INTEGER NULL
 );
 
 CREATE TABLE animal_insurance_details (
@@ -59,7 +67,9 @@ CREATE TABLE animal_insurance_details (
     document_url VARCHAR(100) NOT NULL,
     tenant_id INTEGER REFERENCES tenant(id), -- Foreign key referencing the 'tenant' table
     created_on TIMESTAMP default CURRENT_TIMESTAMP not null,
-    updated_on TIMESTAMP default CURRENT_TIMESTAMP not null
+    updated_on TIMESTAMP default CURRENT_TIMESTAMP not null,
+    created_by INTEGER NULL,
+    updated_by INTEGER NULL
 );
 
 CREATE TABLE animal_health_details (
@@ -71,7 +81,9 @@ CREATE TABLE animal_health_details (
     medication VARCHAR(100) NULL,
     tenant_id INTEGER REFERENCES tenant(id), -- Foreign key referencing the 'tenant' table
     created_on TIMESTAMP default CURRENT_TIMESTAMP not null,
-    updated_on TIMESTAMP default CURRENT_TIMESTAMP not null
+    updated_on TIMESTAMP default CURRENT_TIMESTAMP not null,
+    created_by INTEGER NULL,
+    updated_by INTEGER NULL
 );
 
 CREATE TABLE role (
@@ -82,7 +94,8 @@ CREATE TABLE role (
     tenant_id INTEGER REFERENCES tenant(id) NULL, -- Foreign key referencing the 'tenant' table
     created_on TIMESTAMP default CURRENT_TIMESTAMP not null,
     updated_on TIMESTAMP default CURRENT_TIMESTAMP not null,
-    created_by INTEGER NULL -- Foreign key
+    created_by INTEGER NULL,
+    updated_by INTEGER NULL
 );
 
 -- Emp
@@ -98,7 +111,9 @@ CREATE TABLE emp (
     is_active BOOLEAN DEFAULT FALSE, -- Indicates if the user account is active
     tenant_id INTEGER REFERENCES tenant(id) null, -- Foreign key referencing the 'tenant' table
     created_on TIMESTAMP default CURRENT_TIMESTAMP not null,
-    updated_on TIMESTAMP default CURRENT_TIMESTAMP not null
+    updated_on TIMESTAMP default CURRENT_TIMESTAMP not null,
+    created_by INTEGER NULL,
+    updated_by INTEGER NULL
 );
 
 -- CREATE TABLE emp_details();
@@ -111,7 +126,9 @@ CREATE TABLE resource (
     description VARCHAR(255), -- Optional description of the resource
     tenant_id INTEGER REFERENCES tenant(id), -- Foreign key referencing the 'tenant' table
     created_on TIMESTAMP default CURRENT_TIMESTAMP not null,
-    updated_on TIMESTAMP default CURRENT_TIMESTAMP not null
+    updated_on TIMESTAMP default CURRENT_TIMESTAMP not null,
+    created_by INTEGER NULL,
+    updated_by INTEGER NULL
 );
 
 -- Policy table to define policies
@@ -121,7 +138,9 @@ CREATE TABLE policy (
     description VARCHAR(255), -- Optional description of the policy
     tenant_id INTEGER REFERENCES tenant(id), -- Foreign key referencing the 'tenant' table
     created_on TIMESTAMP default CURRENT_TIMESTAMP not null,
-    updated_on TIMESTAMP default CURRENT_TIMESTAMP not null
+    updated_on TIMESTAMP default CURRENT_TIMESTAMP not null,
+    created_by INTEGER NULL,
+    updated_by INTEGER NULL
 );
 
 -- Policy-Permission table to map permissions to policy for each resource
@@ -132,7 +151,11 @@ CREATE TABLE policy_permission (
     can_view BOOLEAN DEFAULT FALSE, -- Permission to view the resource
     can_edit BOOLEAN DEFAULT FALSE, -- Permission to edit the resource
     can_delete BOOLEAN DEFAULT FALSE, -- Permission to delete the resource
-    can_add BOOLEAN DEFAULT FALSE -- Permission to add new entries to the resource
+    can_add BOOLEAN DEFAULT FALSE,
+    created_on TIMESTAMP default CURRENT_TIMESTAMP not null,
+    updated_on TIMESTAMP default CURRENT_TIMESTAMP not null,
+    created_by INTEGER NULL,
+    updated_by INTEGER NULL
 );
 
 -- Adding index
